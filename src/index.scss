@@ -1,0 +1,100 @@
+* {
+   box-sizing: border-box;
+}
+
+@mixin align-items {
+   display: flex;
+   justify-content: space-between;
+}
+
+@mixin border {
+   border: 1px solid lightgray;
+   padding: 1rem 1rem;
+   border-radius: 0.5rem;
+}
+
+#root {
+   display: flex;
+   justify-content: center;
+   font-family: "Roboto", sans-serif;
+}
+
+.app {
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   width: 85%;
+   gap: 0.5rem;
+}
+
+form {
+   @include align-items;
+   gap: 0.8rem;
+
+   button {
+      width: 40%;
+   }
+}
+
+.filter-container {
+   display: flex;
+   justify-content: center;
+}
+
+.todo-item-container {
+   margin-top: 1.2rem;
+
+   .todo-item {
+      @include align-items;
+      @include border;
+      padding: 0.1rem 0.7rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      gap: 0.8rem;
+
+      form {
+         width: 100%;
+      }
+   }
+
+   p {
+      text-align: start;
+   }
+
+   .icons {
+      display: flex;
+      justify-content: flex-end;
+   }
+}
+
+// Responsive
+@media screen and (min-width: 30em) {
+   .app {
+      width: 60%;
+   }
+}
+
+@media screen and (min-width: 50em) {
+   .app {
+      width: 40%;
+   }
+}
+
+@media screen and (min-width: 50em) {
+   .app {
+      width: 35%;
+   }
+}
+
+@media screen and (min-width: 75em) {
+   .todo-item {
+      width: 80%;
+      margin: auto;
+      justify-content: space-around;
+   }
+
+   .filter-container {
+      width: 80%;
+      margin: auto;
+   }
+}
