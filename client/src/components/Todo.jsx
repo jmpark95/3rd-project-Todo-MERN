@@ -3,16 +3,9 @@ import { Button, Checkbox, IconButton, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useMutation, useQueryClient } from "react-query";
-import { deleteTodo, updateTodo } from "../apis";
+import { deleteTodo } from "../apis";
 
-export default function Todo({
-   id,
-   name,
-   completed,
-   toggleCheckbox,
-   updateTask,
-   deleteTask,
-}) {
+export default function Todo({ id, name, completed }) {
    const [isEditing, setIsEditing] = useState(false);
    const [editingFieldText, setEditingFieldText] = useState("");
    const queryClient = useQueryClient();
@@ -69,7 +62,6 @@ export default function Todo({
                <Checkbox
                   checked={completed}
                   onClick={() => {
-                     // toggleCheckbox(id);
                      checkBoxMutation.mutate(id);
                   }}
                />
@@ -82,7 +74,6 @@ export default function Todo({
                <IconButton
                   sx={{ color: "#d32f2f" }}
                   onClick={() => {
-                     // deleteTask(id);
                      deleteMutation.mutate(id);
                   }}
                >
@@ -115,7 +106,6 @@ export default function Todo({
                      onClick={() => {
                         updateMutation.mutate(id);
                         setIsEditing(false);
-                        // updateTask(id, editingFieldText);
                      }}
                   >
                      Submit

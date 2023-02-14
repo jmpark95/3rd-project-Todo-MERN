@@ -3,8 +3,9 @@ import { TextField, Button } from "@mui/material";
 import { useMutation, useQueryClient } from "react-query";
 import { addNewTodo } from "../apis";
 
-export default function Form({ addTask }) {
+export default function Form() {
    const [formInput, setFormInput] = useState("");
+
    const queryClient = useQueryClient();
 
    const mutation = useMutation(addNewTodo, {
