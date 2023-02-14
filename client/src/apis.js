@@ -1,11 +1,9 @@
-const baseURL = "/"
-
 export function getAllTodos() {
-    return fetch(baseURL).then((res) => res.json());
+    return fetch(process.env.REACT_APP_BACKEND_URL).then((res) => res.json());
 };
 
 export function addNewTodo(newTodo) {
-    return fetch(baseURL, {
+    return fetch(process.env.REACT_APP_BACKEND_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
@@ -15,7 +13,7 @@ export function addNewTodo(newTodo) {
 }
 
 export function deleteTodo(id) {
-    return fetch(`${baseURL}${id}`, {
+    return fetch(`${process.env.REACT_APP_BACKEND_URL}/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json;charset=utf-8",

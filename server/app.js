@@ -11,17 +11,12 @@ const cors = require("cors")
 async function main() {
   await mongoose.connect(process.env.MONGODB_URI);
 }
-main().catch(err => console.log(err));
+main().then(console.log("Connected to database")).catch(err => console.log(err));
 
 var indexRouter = require('./routes/index');
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(express.static('build'))
 app.use(logger('dev'));
 app.use(cors())
 app.use(express.json());
