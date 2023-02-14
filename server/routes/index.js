@@ -2,8 +2,12 @@ var express = require("express");
 var router = express.Router();
 const TodoModel = require("../models/TodoModel");
 
+router.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 // GET All Todos
-router.get("/", async function (req, res, next) {
+router.get("/api", async function (req, res, next) {
   try {
     const allTodos = await TodoModel.find({});
     res.json(allTodos);
@@ -13,7 +17,7 @@ router.get("/", async function (req, res, next) {
 });
 
 //Create todo POST
-router.post("/", async function (req, res, next) {
+router.post("/api", async function (req, res, next) {
   try {
     const newTodo = await TodoModel.create({
       name: req.body.name,
@@ -26,7 +30,7 @@ router.post("/", async function (req, res, next) {
 });
 
 //Delete todo
-router.delete("/:id", async function (req, res, next) {
+router.delete("/api/:id", async function (req, res, next) {
   try {
     const id = req.params.id;
     const removedDocument = await TodoModel.findByIdAndRemove(id);
@@ -37,7 +41,7 @@ router.delete("/:id", async function (req, res, next) {
 });
 
 //Update todo
-router.patch("/:id", async function (req, res, next) {
+router.patch("/api/:id", async function (req, res, next) {
   try {
     const id = req.params.id;
     // console.log(req.body)
