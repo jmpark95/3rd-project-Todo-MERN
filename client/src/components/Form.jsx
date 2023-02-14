@@ -19,7 +19,6 @@ export default function Form() {
          onSubmit={(e) => {
             e.preventDefault();
             if (formInput) {
-               // addTask(formInput);
                setFormInput("");
                mutation.mutate({ name: formInput });
             }

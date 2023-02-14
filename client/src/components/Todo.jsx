@@ -4,6 +4,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useMutation, useQueryClient } from "react-query";
 import { deleteTodo } from "../apis";
+const baseURL = "http://localhost:8000";
 
 export default function Todo({ id, name, completed }) {
    const [isEditing, setIsEditing] = useState(false);
@@ -18,7 +19,7 @@ export default function Todo({ id, name, completed }) {
 
    const updateMutation = useMutation(
       (id) => {
-         return fetch(`http://localhost:8000/${id}`, {
+         return fetch(`${baseURL}/${id}`, {
             method: "PATCH",
             headers: {
                "Content-Type": "application/json;charset=utf-8",
@@ -35,7 +36,7 @@ export default function Todo({ id, name, completed }) {
 
    const checkBoxMutation = useMutation(
       (id) => {
-         return fetch(`http://localhost:8000/${id}`, {
+         return fetch(`${baseURL}/${id}`, {
             method: "PATCH",
             headers: {
                "Content-Type": "application/json;charset=utf-8",
