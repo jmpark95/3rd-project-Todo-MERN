@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import { useMutation, useQueryClient } from "react-query";
+import { addNewTodo } from "../apis";
 
 export default function Form({ addTask }) {
    const [formInput, setFormInput] = useState("");
+   const queryClient = useQueryClient();
+
+   const mutation = useMutation(addNewTodo, {
+      onSuccess: () => {
+         queryClient.invalidateQueries("todos");
+      },
+   });
+
    return (
       <form
          onSubmit={(e) => {
             e.preventDefault();
             if (formInput) {
-               addTask(formInput);
+               // addTask(formInput);
                setFormInput("");
+               mutation.mutate({ name: formInput });
             }
          }}
       >
