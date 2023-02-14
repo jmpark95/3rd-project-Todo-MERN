@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:8000"
+const baseURL = "/"
 
 export function getAllTodos() {
     return fetch(baseURL).then((res) => res.json());
@@ -15,7 +15,7 @@ export function addNewTodo(newTodo) {
 }
 
 export function deleteTodo(id) {
-    return fetch(`${baseURL}/${id}`, {
+    return fetch(`${baseURL}${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
